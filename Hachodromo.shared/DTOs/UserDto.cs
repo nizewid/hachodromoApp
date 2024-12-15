@@ -16,7 +16,7 @@ namespace Hachodromo.shared.DTOs
 		public int Region { get; set; }
 		public bool IsActive { get; set; }
 		public string UserType { get; set; } // Simplificado, en vez de incluir el objeto completo de UserType
-		public MembershipDto Membership { get; set; } // Relación con MembershipDto
+		public ICollection<MembershipDto>? Memberships { get; set; } // Relación con MembershipDto
 	}
 
 }

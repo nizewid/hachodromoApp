@@ -39,7 +39,6 @@ namespace HachodromoApi.Data
 					LastLogin = DateTime.Now,
 					IsActive = true,
 					UserTypeId = UserType.Id,
-					MembershipExpirationDate = new DateTime(2024, 12, 31)
 				};
 				Users.Add(User);
 				SaveChanges();

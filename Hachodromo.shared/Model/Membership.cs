@@ -8,7 +8,7 @@ namespace Hachodromo.Shared.Models
 		public int Id { get; set; }
 
 		[Required]
-		public string MembershipType { get; set; }  // Ejemplo: Gold, Silver, Bronze
+		public string MembershipType { get; set; } = string.Empty; // Ejemplo: Gold, Silver, Bronze
 
 		[Required]
 		public DateTime StartDate { get; set; }
@@ -18,7 +18,11 @@ namespace Hachodromo.Shared.Models
 
 		// Relación con User
 		public int UserId { get; set; }
-		public User User { get; set; }
+		public User User { get; set; } = null!;
+
+		// Validación: Asegurarse de que StartDate < ExpirationDate
+		public bool IsValidDateRange() => StartDate < ExpirationDate;
+
 	}
 
 }

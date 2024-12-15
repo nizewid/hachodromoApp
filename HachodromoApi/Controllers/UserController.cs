@@ -23,9 +23,9 @@ namespace HachodromoApi.Controllers
 		public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
 		{
 			var users = await _context.Users
-				.Include(u => u.UserType)
-				.Include(u => u.Membership)
-				.ToListAsync();
+					.Include(u => u.UserType)
+					.Include(u => u.Memberships) // Incluye las membresías relacionadas
+					.ToListAsync();
 
 			var userDtos = users.Select(u => new UserDto
 			{
@@ -36,12 +36,15 @@ namespace HachodromoApi.Controllers
 				City = u.City,
 				Region = (int)u.Region,
 				IsActive = u.IsActive,
-				UserType = u.UserType.Name,
-				Membership = u.Membership.FirstOrDefault() == null ? null : new MembershipDto
-				{
-					MembershipType = u.Memberships.FirstOrDefault().MembershipType,
-					ExpirationDate = u.Memberships.FirstOrDefault().ExpirationDate
-				}
+				UserType = u.UserType.Name,  // Asegúrate de mapear el nombre del tipo de usuario
+				Memberships = u.Memberships
+								.Select(m => new MembershipDto
+													{
+									MembershipType = m.MembershipType,
+									StartDate = m.StartDate,
+									ExpirationDate = m.ExpirationDate
+								})
+			.ToList() // Asegúrate de convertir a lista
 			}).ToList();
 
 			return Ok(userDtos);
@@ -54,7 +57,7 @@ namespace HachodromoApi.Controllers
 			// Busca un usuario por su ID e incluye UserType y Membership
 			var user = await _context.Users
 				.Include(u => u.UserType)
-				.Include(u => u.Membership)
+				.Include(u => u.Memberships)
 				.FirstOrDefaultAsync(u => u.Id == id);
 
 			if (user == null)

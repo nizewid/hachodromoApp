@@ -60,9 +60,8 @@ namespace Hachodromo.Shared.Models
 		public UserType UserType { get; set; } = null!; // Relación con UserType
 
 		[Required]
-		public Membership Membership { get; set; } // Relación con Membresía (Gold, Silver, Bronze)
+		public ICollection<Membership> Memberships { get; set; } = new List<Membership>();// Relación con Membresía (Gold, Silver, Bronze)
 
 		// Fecha de vencimiento de la membresía
-		public DateTime? MembershipExpirationDate { get; set; }
 	}
 }
