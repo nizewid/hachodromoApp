@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Hachodromo.shared.Constants;
+using Hachodromo.shared.Model;
 using Hachodromo.Shared.Constants;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Hachodromo.shared.Constants;
 
 namespace Hachodromo.Shared.Models
 {

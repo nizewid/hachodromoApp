@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using HachodromoApi.Data;  // Asegúrate de que esta referencia esté correcta
+﻿using Hachodromo.Shared.DTOs;
 using Hachodromo.Shared.Models;
-using Hachodromo.shared.DTOs;
+using HachodromoApi.Data;  // Asegúrate de que esta referencia esté correcta
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HachodromoApi.Controllers
 {
@@ -39,7 +39,7 @@ namespace HachodromoApi.Controllers
 				UserType = u.UserType.Name,  // Asegúrate de mapear el nombre del tipo de usuario
 				Memberships = u.Memberships
 								.Select(m => new MembershipDto
-													{
+								{
 									MembershipType = m.MembershipType,
 									StartDate = m.StartDate,
 									ExpirationDate = m.ExpirationDate

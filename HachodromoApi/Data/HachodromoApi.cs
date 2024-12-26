@@ -1,16 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Hachodromo.Shared.Models; // Ajusta según la ubicación de tus modelos.
+﻿using Hachodromo.Shared.Models;
+using Hachodromo.Shared.Constants;
+using Microsoft.EntityFrameworkCore;
 
 namespace HachodromoApi.Data
 {
-	public class HachodromoDbContext : DbContext
+	public class HachodromoDbContext(DbContextOptions<HachodromoDbContext> options) : DbContext(options)
 	{
-		public HachodromoDbContext(DbContextOptions<HachodromoDbContext> options)
-			: base(options)
-		{ }
 		public void Seed()
 		{
-			if(!UserTypes.Any())
+			if (!UserTypes.Any())
 			{
 				var userType = new UserType
 				{
@@ -30,9 +28,9 @@ namespace HachodromoApi.Data
 					LastName = "Flores",
 					LastName2 = "Silva",
 					BornDate = new DateTime(1989, 9, 19),
-					Sex = Hachodromo.shared.Constants.SexCode.Male,
+					Sex = SexCode.Male,
 					City = "Gijon",
-					Region = Hachodromo.Shared.Constants.Region.Asturias,
+					Region = Region.Asturias,
 					Email = "admin@admin.com",
 					PasswordHash = "12345678",
 					CreatedAt = DateTime.Now,
@@ -43,12 +41,12 @@ namespace HachodromoApi.Data
 				Users.Add(User);
 				SaveChanges();
 			}
-			
+
 		}
 
 
-		public DbSet<User> Users { get; set; }
-		public DbSet<UserType> UserTypes { get; set; }
-		public DbSet<Membership> Memberships { get; set; }
+		public DbSet<User> Users { get; set; } = null!;
+		public DbSet<UserType> UserTypes { get; set; } = null!;
+		public DbSet<Membership> Memberships { get; set; } = null!;
 	}
 }

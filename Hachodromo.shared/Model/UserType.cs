@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Hachodromo.Shared.Models
+namespace Hachodromo.shared.Model
 {
 	public class UserType
 	{
@@ -14,9 +9,9 @@ namespace Hachodromo.Shared.Models
 
 		[Required]
 		[MaxLength(50)]
-		public string Name { get; set; } // Ejemplo: "Admin", "Superadmin", "Client", etc.
+		public string? Name { get; set; } // Ejemplo: "Admin", "Superadmin", "Client", etc.
 
 		[MaxLength(200)]
-		public string Description { get; set; } // Descripción de lo que puede hacer ese tipo de usuario
+		public string? Description { get; set; } // Descripción de lo que puede hacer ese tipo de usuario
 	}
 }
